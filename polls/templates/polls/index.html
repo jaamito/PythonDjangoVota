@@ -1,0 +1,12 @@
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+{% if latest_question_list %}
+    <ul>
+    {% for pregunta in latest_question_list %}
+        <li><a href="{% url 'polls:detail' pregunta.id %}">{{ pregunta.textPregunta }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay opciones para votar.</p>
+{% endif %}
