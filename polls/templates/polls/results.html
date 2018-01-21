@@ -1,9 +1,16 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+
 <h1>{{ pregunta.textPregunta }}</h1>
 
 <ul>
 {% for respuesta in pregunta.respuesta_set.all %}
-    <li>{{ respuesta.textRespuesta }} -- {{ respuesta.votes }} vote{{ respuesta.votos|pluralize }}</li>
+    <li>{{ respuesta.textRespuesta }} --> Tiene!! --> {{ respuesta.votos }} voto{{ respuesta.votos|pluralize }}</li>
 {% endfor %}
 </ul>
 
-<a href="{% url 'polls:detail' pregunta.id %}">Volver a votar?</a>
+<a href="{% url 'polls:detail' pregunta.id %}"><input type="button" value="Volver a votar '{{ pregunta.textPregunta }}'"></a></br></br>
+
+<a href="http://127.0.0.1:8000"><input type="button" value="Volver al inicio"></a>
+

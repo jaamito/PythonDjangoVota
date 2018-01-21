@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
 <h1>{{ pregunta.textPregunta }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -6,6 +9,7 @@
 {% for respuesta in pregunta.respuesta_set.all %}
     <input type="radio" name="respuesta" id="respuesta{{ forloop.counter }}" value="{{ respuesta.id }}" />
     <label for="respuesta{{ forloop.counter }}">{{ respuesta.textRespuesta }}</label><br />
-{% endfor %}
-<input type="submit" value="Vote" />
+{% endfor %}</br>
+<input type="submit" value="Vota" />
 </form>
+<a href="http://127.0.0.1:8000"><input type="button" value="Volver al inicio"></a>

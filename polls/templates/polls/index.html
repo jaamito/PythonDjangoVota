@@ -1,12 +1,25 @@
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
-{% if latest_question_list %}
-    <ul>
-    {% for pregunta in latest_question_list %}
-        <li><a href="{% url 'polls:detail' pregunta.id %}">{{ pregunta.textPregunta }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay opciones para votar.</p>
-{% endif %}
+<div id="principal">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+	<div id="head">
+		<a href="http://127.0.0.1:8000/admin"><input type="button" value="Acceder como administrador"></a>
+	</div>
+	<div id="izquierda">
+		{% if latest_question_list %}
+    		<ul>
+    		{% for pregunta in latest_question_list %}
+        		<li><a href="{% url 'polls:detail' pregunta.id %}">{{ pregunta.textPregunta }}</a></li>
+    		{% endfor %}
+    		</ul>
+		{% else %}
+    		<p>No hay opciones para votar.</p>
+		{% endif %}
+	</div>
+	<div id="derecha">
+		<p>derecha<p>
+	</div>
+	<div id="footer">
+		<p>footer</p>
+	</div>
+</div>
