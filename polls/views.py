@@ -41,3 +41,9 @@ def vote(request, pregunta_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(pregunta.id,)))
+
+
+        class RegistroUsuario(CreateView):
+            model = User
+            template_name = "polls/registrar.html"
+            from_class = UserCreationForm
