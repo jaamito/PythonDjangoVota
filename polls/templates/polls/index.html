@@ -5,7 +5,7 @@
 	<div id="head">
 		<a href="http://127.0.0.1:8000/admin"><input type="button" value="Acceder como administrador"></a>
 	</div>
-	<div id="izquierda">
+
 		{% if latest_question_list %}
     		<ul>
     		{% for pregunta in latest_question_list %}
@@ -15,11 +15,5 @@
 		{% else %}
     		<p>No hay opciones para votar.</p>
 		{% endif %}
-	</div>
-	<div id="derecha">
-		<p>derecha<p>
-	</div>
-	<div id="footer">
-		<p>footer</p>
-	</div>
+	
 </div>

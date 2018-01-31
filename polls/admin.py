@@ -10,6 +10,11 @@ class RespuestaInline(admin.TabularInline):
 class RespuestaAdmin(admin.ModelAdmin):
     list_display = ('textRespuesta','pregunta','Sumavotos')
     search_fields = ['textoRespuesta']
+    def get_ordering(self, request):
+        if request.user.is_superuser:
+            return ['pregunta']
+        else:
+            return ['pregunta']
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('textPregunta', 'dataPubli')
     inlines = [RespuestaInline]
@@ -21,7 +26,7 @@ class QuestionAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(author=request.user)
 
-        
+
 admin.site.register(Pregunta,QuestionAdmin)
 admin.site.register(Respuesta,RespuestaAdmin)
 admin.site.register(Voto)
