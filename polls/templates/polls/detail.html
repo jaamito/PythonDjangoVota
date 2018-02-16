@@ -1,6 +1,7 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
-
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<div class="containter" style="margin-left: 5%;">
 <h1>{{ pregunta.textPregunta }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -8,8 +9,10 @@
 {% csrf_token %}
 {% for respuesta in pregunta.respuesta_set.all %}
     <input type="radio" name="respuesta" id="respuesta{{ forloop.counter }}" value="{{ respuesta.id }}" />
+    <input type="hidden" name="user" id="user" value="{{ user.id }}" />
     <label for="respuesta{{ forloop.counter }}">{{ respuesta.textRespuesta }}</label><br />
 {% endfor %}</br>
-<input type="submit" value="Vota" />
+<input type="submit" value="Vota" class="btn btn-primary"/>
 </form>
-<a href="http://127.0.0.1:8000"><input type="button" value="Volver al inicio"></a>
+<a href="http://127.0.0.1:8000/index/" class="btn btn-primary">Volver al inicio</a>
+</div>

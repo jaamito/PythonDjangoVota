@@ -1,22 +1,15 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-
+<div class="containter" style="margin-left: 5%;">
 <h1>{{ pregunta.textPregunta }}</h1>
 
-
+<ul class="list-group" style="width: 300px;">
 {% for respuesta in pregunta.respuesta_set.all %}
-&nbsp;<li>{{ respuesta.textRespuesta }} </li>
-<div class="progress progress-striped active">
-  <div class="progress-bar" role="progressbar"
-       aria-valuenow="{{ respuesta.votos }}" aria-valuemin="0" aria-valuemax="100"
-       style="width: {{ respuesta.votos }}%">
-       <p><strong>{{ respuesta.votos }}</strong> Voto{{ respuesta.votos|pluralize }}</p>    <span class="sr-only">{{ respuesta.votos }}% completado</span>
-  </div>
-</div>
+    <li class="list-group-item">{{ respuesta.textRespuesta }}<span class="badge">{{ respuesta.sum }} voto{{ respuesta.sum|pluralize }}</span></li>
 {% endfor %}
 </ul>
-<a href="{% url 'polls:detail' pregunta.id %}"><input type="button" value="Volver a votar '{{ pregunta.textPregunta }}'"></a></br></br>
+<a href="{% url 'polls:detail' pregunta.id %}"><input type="button" value="Volver a votar '{{ pregunta.textPregunta }}'" class="btn btn-primary"></a></br></br>
 
-<a href="http://127.0.0.1:8000"><input type="button" value="Volver al inicio"></a>
+<a href="http://127.0.0.1:8000/index/" class="btn btn-primary">Volver al inicio</a>
 

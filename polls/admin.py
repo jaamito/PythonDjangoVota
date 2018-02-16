@@ -8,7 +8,7 @@ class RespuestaInline(admin.TabularInline):
     extra = 3
 
 class RespuestaAdmin(admin.ModelAdmin):
-    list_display = ('textRespuesta','pregunta','Sumavotos')
+    list_display = ('textRespuesta','pregunta','sum')
     search_fields = ['textoRespuesta']
     def get_ordering(self, request):
         if request.user.is_superuser:
@@ -26,7 +26,16 @@ class QuestionAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(author=request.user)
 
+class VotoAdmin(admin.ModelAdmin):
+    list_display = ('author','respuesta','Id')
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(author=request.user)
+
+
 
 admin.site.register(Pregunta,QuestionAdmin)
 admin.site.register(Respuesta,RespuestaAdmin)
-admin.site.register(Voto)
+admin.site.register(Voto,VotoAdmin)

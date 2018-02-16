@@ -1,19 +1,47 @@
-
+{% extends 'base_generic.html' %}
+{%block content%}
 <div id="principal">
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 	<div id="head">
-		<a href="http://127.0.0.1:8000/admin"><input type="button" value="Acceder como administrador"></a>
 	</div>
+{% if user.is_authenticated %}
+	<div class="panel panel-primary" style="width: 700px; margin-left: 10%">
+  			<div class="panel-heading"><h2><strong>A votar</strong></h2></div>
+ 				{% if latest_question_list %}
+  				<ul class="list-group">
+  					{% for pregunta in latest_question_list %}
+        				<li class="list-group-item"><a href="{% url 'polls:detail' pregunta.id %}">{{ pregunta.textPregunta }}</a></li>
+    				{% endfor %}
+  				</ul>
+  				{% else %}
+    				<p>No hay opciones para votar.</p>
+				{% endif %}
+		</div>
+		{%else%}
+		<div class="container">
+		<div class="panel panel-primary">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Para poder votar tienes que loguearte!!!</h3>
+  			</div>
+  			<div class="panel-body">
+    			<a href="http://127.0.0.1:8000/accounts/login" class="btn btn-primary">Login</a>
+  			</div>
+		</div>
 
-		{% if latest_question_list %}
-    		<ul>
-    		{% for pregunta in latest_question_list %}
-        		<li><a href="{% url 'polls:detail' pregunta.id %}">{{ pregunta.textPregunta }}</a></li>
-    		{% endfor %}
-    		</ul>
-		{% else %}
-    		<p>No hay opciones para votar.</p>
-		{% endif %}
-	
+		<div class="panel panel-danger">
+  			<div class="panel-heading"><h2><strong>No puedes votar sin registrarte!</strong></h2></div>
+ 				{% if latest_question_list %}
+  				<ul class="list-group">
+  					{% for pregunta in latest_question_list %}
+        				<li class="list-group-item"><p>{{ pregunta.textPregunta }}</p></li>
+    				{% endfor %}
+  				</ul>
+  				{% else %}
+    				<p>No hay opciones para votar.</p>
+				{% endif %}
+		</div>
+		{%endif%}
+
 </div>
+{%endblock%}

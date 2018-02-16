@@ -1,0 +1,21 @@
+
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+<div class="panel panel-primary" style="width: 600px;  text-align: center; margin-left: 28%; margin-top: 10%">
+  <div class="panel-heading">
+    <h3 class="panel-title">Bienvenido a django Vota</h3>
+  </div>
+  <div class="panel-body">
+    <div id="head">
+    {% if user.is_authenticated %}
+    <a href="http://127.0.0.1:8000/index" class="btn btn-primary">Empezar a votar</a>
+    <a href="{% url "logout" %}" class="btn btn-primary">Desconectar</a>
+    {%else%}
+		<a href="http://127.0.0.1:8000/admin" class="btn btn-primary">Acceder como administrador</a>
+		<a href="http://127.0.0.1:8000/accounts/login" class="btn btn-primary">Login</a>
+		<a href="http://127.0.0.1:8000/register" class="btn btn-primary">Registrar</a>
+    {%endif%}
+	</div>
+  </div>
+</div>
